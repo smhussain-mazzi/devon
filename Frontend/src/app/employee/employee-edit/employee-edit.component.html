@@ -1,0 +1,81 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div fxLayout="row wrap" fxLayoutGap="40px" fxLayoutAlign="start center">
+    <input type="hidden" formControlName="id" name="id" />
+
+    <mat-form-field fxFlex="0 1 500px">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        placeholder="Name"
+        autocomplete="name"
+        formControlName="name"
+        name="name"
+      />
+      <mat-error *ngIf="hasError('name', 'required')"
+        >Employee Name is required</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field fxFlex="0 1 500px">
+      <mat-label>Code</mat-label>
+      <input
+        matInput
+        placeholder="Code"
+        autocomplete="code"
+        formControlName="code"
+        name="code"
+      />
+      <mat-error *ngIf="hasError('code', 'required')"
+        >Employee Code is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field fxFlex="0 1 500px">
+      <mat-label>Date of Birth</mat-label>
+      <input
+        matInput
+        placeholder="Date of Birth"
+        autocomplete="off"
+        formControlName="dateOfBirth"
+        [matDatepicker]="dp"
+        name="dateOfBirth"
+      />
+      <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+      <mat-datepicker #dp></mat-datepicker>
+      <mat-error *ngIf="hasError('dateOfBirth', 'required')"
+        >Employee DOB is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field fxFlex="0 1 500px">
+      <mat-label>Address</mat-label>
+      <input
+        matInput
+        placeholder="Address"
+        autocomplete="address"
+        formControlName="address"
+        name="address"
+      />
+      <mat-error *ngIf="hasError('address', 'required')"
+        >Employee Address is required</mat-error
+      >
+    </mat-form-field>
+  </div>
+  <div>
+    <button
+      class="dispatch-button"
+      [disabled]="loading || !form.valid"
+      color="primary"
+      mat-raised-button
+    >
+      Submit
+    </button>
+    <div fxFlex></div>
+    <button
+      type="button"
+      [routerLink]="['/employee']"
+      mat-stroked-button
+      color="warn"
+    >
+      Cancel
+    </button>
+  </div>
+</form>
